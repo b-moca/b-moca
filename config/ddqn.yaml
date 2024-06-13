@@ -1,0 +1,36 @@
+algorithm: ddqn
+episode_len: 5
+expr_iters: 100
+train_iters: 10000
+update_interval: 1
+batch_size: 32
+
+seed: 0
+load_buffer: None
+load_weight: None
+eval_at_train: False
+
+env:
+  adjusting_freq: 1.0
+  adb_server_port: 5037
+  train_id: 0
+  test_id: 0
+
+algo:
+  td_step: 1
+  buffer_size: 100000
+  feature_dim: 768
+  critic_hidden_dim: 512
+  lr: 2.0e-4
+  critic_tau: 0.01
+  critic_gamma: 0.9
+  epsilon_schedule: "linear(0.9, 0.01, 10000)"
+  avail_tasks: [gmail/open_Gmail]
+  succ_sample_ratio: 0.25
+  device: cuda:0
+
+log:
+  checkpoint_name: ddqn_gmail
+  buffer_name: ddqn_gmail
+  train_log_interval: 50
+  save_interval: 100
